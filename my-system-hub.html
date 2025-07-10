@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Business System Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* A calming light grey background */
+        }
+        .task-item input:checked + label {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+        .task-item input:checked + label .task-icon {
+            opacity: 0.5;
+        }
+        .task-card {
+            transition: all 0.3s ease-in-out;
+        }
+        .focus-mode .task-card:not(.focused) {
+            opacity: 0.2;
+            transform: scale(0.95);
+        }
+        .focus-mode .task-card.focused {
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .checkbox-custom {
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 0.25em;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+        .checkbox-custom::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #4f46e5;
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        .checkbox-custom:checked::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <div id="app" class="container mx-auto p-4 md:p-8 max-w-5xl">
+        
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Stop Overthinking, Start Doing.</h1>
+            <p class="mt-3 text-lg text-slate-600">Your clear path from chaos to consistency. Pick a system and take the first step.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="systems-grid">
+
+            <!-- System 1: Content Engine -->
+            <div id="content-engine" class="task-card bg-white p-6 rounded-2xl shadow-lg border border-slate-200">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-indigo-600">The Content Engine</h2>
+                        <p class="text-sm text-slate-500">Your weekly batching process. Do this once a week.</p>
+                    </div>
+                    <button onclick="toggleFocus('content-engine')" class="focus-btn text-sm bg-indigo-100 text-indigo-700 font-semibold py-1 px-3 rounded-full hover:bg-indigo-200 transition">Focus</button>
+                </div>
+                
+                <div class="space-y-4">
+                    <!-- Phase 1 -->
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Phase 1: Sourcing (45min)</h3>
+                        <div class="space-y-3 pl-2 border-l-2 border-slate-200">
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task1-1" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task1-1" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">🔍</span> Find 7 viral videos on TikTok.
+                                </label>
+                            </div>
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task1-2" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task1-2" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">📝</span> Copy video links & top comments to a doc.
+                                </label>
+                            </div>
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task1-3" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task1-3" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">⬇️</span> Download all 7 videos (no watermark).
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Phase 2 -->
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Phase 2: Editing (90min)</h3>
+                        <div class="space-y-3 pl-2 border-l-2 border-slate-200">
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task2-1" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task2-1" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">🎬</span> Apply your template to all 7 videos.
+                                </label>
+                            </div>
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task2-2" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task2-2" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">✍️</span> Add the "top comment" as a caption in each video.
+                                </label>
+                            </div>
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task2-3" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task2-3" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">💾</span> Export all videos with clear names.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Phase 3 -->
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Phase 3: Scheduling (45min)</h3>
+                         <div class="space-y-3 pl-2 border-l-2 border-slate-200">
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task3-1" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task3-1" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">📅</span> Open Meta Business Suite to schedule.
+                                </label>
+                            </div>
+                            <div class="task-item flex items-center">
+                                <input type="checkbox" id="task3-2" class="checkbox-custom mr-3 flex-shrink-0">
+                                <label for="task3-2" class="flex items-center cursor-pointer">
+                                    <span class="task-icon mr-2">📤</span> Upload and schedule one video for each day.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System 2: Viral Launch Protocol -->
+            <div id="viral-protocol" class="task-card bg-white p-6 rounded-2xl shadow-lg border border-slate-200">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-emerald-600">Viral Launch Protocol</h2>
+                        <p class="text-sm text-slate-500">Activate this when a promo video takes off.</p>
+                    </div>
+                     <button onclick="toggleFocus('viral-protocol')" class="focus-btn text-sm bg-emerald-100 text-emerald-700 font-semibold py-1 px-3 rounded-full hover:bg-emerald-200 transition">Focus</button>
+                </div>
+                
+                <div class="space-y-3">
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-1" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-1" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">⏱️</span> **Step 1:** Find product source (15 min rule).
+                        </label>
+                    </div>
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-2" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-2" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">🛍️</span> **Step 2:** Build "good enough" product page.
+                        </label>
+                    </div>
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-3" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-3" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">🏠</span> **Step 3:** Update store homepage banner.
+                        </label>
+                    </div>
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-4" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-4" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">🎨</span> **Step 4:** Create/collect new visuals with AI.
+                        </label>
+                    </div>
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-5" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-5" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">🔗</span> **Step 5:** Go live with link in bio.
+                        </label>
+                    </div>
+                    <div class="task-item flex items-center">
+                        <input type="checkbox" id="task4-6" class="checkbox-custom mr-3 flex-shrink-0">
+                        <label for="task4-6" class="flex items-center cursor-pointer">
+                            <span class="task-icon mr-2">📣</span> **Step 6:** Engage & direct traffic in comments.
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Controls and Quote -->
+        <div class="mt-10 text-center">
+            <button onclick="resetChecklists()" class="bg-slate-200 text-slate-700 font-semibold py-2 px-5 rounded-lg hover:bg-slate-300 transition">Reset Checklists</button>
+            <div class="mt-8 text-slate-500 italic">
+                <p id="quote">"The secret of getting ahead is getting started."</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const quotes = [
+            "The secret of getting ahead is getting started.",
+            "A year from now you may wish you had started today.",
+            "Progress, not perfection.",
+            "Don't watch the clock; do what it does. Keep going.",
+            "The key is not to prioritize what's on your schedule, but to schedule your priorities.",
+            "Systemize the predictable so you can humanize the exceptional."
+        ];
+
+        // Set a random quote on page load
+        document.getElementById('quote').innerText = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+
+        const appContainer = document.getElementById('app');
+        const checklists = document.querySelectorAll('input[type="checkbox"]');
+
+        // Load state from localStorage
+        function loadState() {
+            checklists.forEach(checkbox => {
+                const isChecked = localStorage.getItem(checkbox.id) === 'true';
+                checkbox.checked = isChecked;
+            });
+        }
+
+        // Save state to localStorage
+        function saveState(id, isChecked) {
+            localStorage.setItem(id, isChecked);
+        }
+        
+        // Add event listeners to all checkboxes
+        checklists.forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                saveState(e.target.id, e.target.checked);
+            });
+        });
+
+        // Function to reset all checklists
+        function resetChecklists() {
+            if (confirm("Are you sure you want to reset all checklists? This is great for starting a new week!")) {
+                checklists.forEach(checkbox => {
+                    checkbox.checked = false;
+                    localStorage.removeItem(checkbox.id);
+                });
+                // Remove focus mode if active
+                if(appContainer.classList.contains('focus-mode')) {
+                    const focusedCard = document.querySelector('.task-card.focused');
+                    if(focusedCard) {
+                        focusedCard.classList.remove('focused');
+                        const focusBtn = focusedCard.querySelector('.focus-btn');
+                        focusBtn.innerText = 'Focus';
+                    }
+                    appContainer.classList.remove('focus-mode');
+                }
+            }
+        }
+
+        // Function to toggle focus mode
+        function toggleFocus(cardId) {
+            const card = document.getElementById(cardId);
+            const isAlreadyFocused = card.classList.contains('focused');
+            
+            // Remove focus from all cards first
+            document.querySelectorAll('.task-card').forEach(c => c.classList.remove('focused'));
+            document.querySelectorAll('.focus-btn').forEach(b => b.innerText = 'Focus');
+
+            if (isAlreadyFocused) {
+                // If it was already focused, we just turn off focus mode
+                appContainer.classList.remove('focus-mode');
+            } else {
+                // Otherwise, turn on focus mode and focus on the selected card
+                appContainer.classList.add('focus-mode');
+                card.classList.add('focused');
+                card.querySelector('.focus-btn').innerText = 'Unfocus';
+            }
+        }
+
+        // Load the saved state when the page loads
+        window.onload = loadState;
+    </script>
+</body>
+</html>
